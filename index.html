@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- ✏️ ALTERE: Título da página (aparece na aba do navegador) -->
+<title>Canvas — Anita Malfatti</title>
+<!-- Links das fontes e CSS - NÃO ALTERE -->
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- ══════════════════════════════════════════════════════════════
+     NAVBAR (MENU DO TOPO)
+     ✏️ OPCIONAL: Você pode mudar os nomes dos temas se quiser
+     ══════════════════════════════════════════════════════════════ -->
+<nav class="navbar">
+  <!-- Logotipo fixo - NÃO ALTERE -->
+  <div class="nav-logo">
+    <div class="nav-logo-dot"></div>
+    CANVAS
+  </div>
+
+  <!-- Botões de tema - OPCIONAL editar os nomes -->
+  <div class="nav-themes">
+    <span class="theme-label">Tema</span>
+    <button class="tbtn active" onclick="mudarTema('', this)">Galeria</button>
+    <button class="tbtn" onclick="mudarTema('atelie', this)">Ateliê</button>
+    <button class="tbtn" onclick="mudarTema('museu', this)">Museu</button>
+    <button class="tbtn" onclick="mudarTema('impressionista', this)">Impressão</button>
+  </div>
+</nav>
+
+<div class="canvas-app">
+
+  <!-- ══════════════════════════════════════════════════════════════
+       IMAGEM DE CAPA DO PERFIL
+       ✏️ ALTERE AQUI: Substitua o placeholder pela imagem de capa
+       ══════════════════════════════════════════════════════════════ -->
+  <div class="profile-cover">
+    <!-- 
+    🎯 SUBSTITUIR ESTE BLOCO COMPLETO POR:
+    <img src="URL_DA_IMAGEM" alt="Capa do perfil" class="profile-cover-art">
+    
+    Exemplo:
+    <img src="https://exemplo.com/imagem-capa.jpg" alt="Capa do perfil" class="profile-cover-art">
+    -->
+    <img src="capa.webp" alt="Capa da página">
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════════════
+       SEÇÃO DO PERFIL
+       ✏️ ALTERE: Foto, nome, localização, movimento, estatísticas, bio
+       ══════════════════════════════════════════════════════════════ -->
+  <div class="profile-section">
+
+    <!-- FOTO E BOTÃO SEGUIR -->
+    <div class="profile-row">
+      <div class="profile-portrait" id="portrait-el">
+        <!-- 
+        🎯 SUBSTITUIR O EMOJI POR:
+        <img src="URL_DA_FOTO" alt="Retrato do pintor">
+        
+        Exemplo:
+        <img src="https://exemplo.com/foto-pintor.jpg" alt="Retrato do pintor">
+        -->
+        <img src="foto de perfil.webp" alt="Imagem de Perfil" srcset="">
+      </div>
+      <!-- Botão seguir - NÃO ALTERE -->
+      <div class="profile-actions">
+        <button class="btn-seguir" onclick="toggleSeguir(this)">+ Seguir</button>
+      </div>
+    </div>
+
+    <!-- NOME E HANDLE DO PERFIL -->
+    <div class="profile-name-block">
+      <!-- ✏️ ALTERE: Nome completo do pintor -->
+      <div class="profile-full-name" id="nome-pintor">Anita Catarina Malfatti</div>
+      <!-- ✏️ ALTERE: @handle e anos de vida (nascimento – falecimento) -->
+      <div class="profile-handle">@ea_a_moreninha_da_pintura· 1889 – 1964</div>
+    </div>
+
+    <!-- LOCALIZAÇÃO E MOVIMENTO ARTÍSTICO -->
+    <div class="profile-meta-row">
+      <!-- ✏️ ALTERE: Cidade e país de origem -->
+      <div class="profile-meta-item">
+        <span class="meta-icon">📍</span>
+        <span>São Paulo,Brasil</span>
+      </div>
+      <!-- ✏️ ALTERE: Nome do movimento artístico -->
+      <div class="movement-badge">Modernista</div>
+    </div>
+
+    <!-- ESTATÍSTICAS DO PERFIL -->
+    <div class="profile-stats-row">
+      <!-- ✏️ ALTERE: Número total de obras -->
+      <div class="pstat">
+        <span class="pstat-num" id="n-obras">5</span>
+        <span class="pstat-label">obras</span>
+      </div>
+      <!-- ✏️ ALTERE: Quantas décadas o artista esteve ativo -->
+      <div class="pstat">
+        <span class="pstat-num">7</span>
+        <span class="pstat-label">décadas ativa</span>
+      </div>
+      <!-- ✏️ ALTERE: Número fictício de admiradores/seguidores -->
+      <div class="pstat">
+        <span class="pstat-num">20000000000000000000000000</span>
+        <span class="pstat-label">admiradores</span>
+      </div>
+    </div>
+
+    <!-- BIOGRAFIA CURTA -->
+    <!-- ✏️ ALTERE: Escreva 2-4 linhas sobre o artista -->
+    <p class="profile-bio-text">
+      Anita Malfatti foi uma pintora brasileira nascida em São Paulo, em 1889, e uma das principais representantes do Modernismo no Brasil. Estudou arte no Brasil, na Alemanha e nos Estados Unidos, onde teve contato com o expressionismo. Sua exposição de 1917 revolucionou a arte brasileira com cores fortes e formas modernas, influenciando a Semana de Arte Moderna de 1922 e a renovação da arte no país.
+    </p>
+
+    <!-- CITAÇÃO FAMOSA -->
+    <!-- ✏️ ALTERE: Insira uma frase famosa do pintor ou sobre sua arte -->
+    <blockquote class="profile-bio-quote">
+      “A arte é a expressão mais sincera da alma.”
+    </blockquote>
+
+    <!-- TAGS/HASHTAGS -->
+    <!-- ✏️ ALTERE: Substitua pelas palavras-chave relacionadas ao artista -->
+    <div class="profile-tags">
+      <span class="ptag">#Modernismo</span>
+      <span class="ptag">#expressionismo</span>
+      <span class="ptag">#ohomemamarelo</span>
+      <span class="ptag">#anitamalfatti</span>
+      <span class="ptag">#vanguardaseuropeias</span>
+    </div>
+
+  </div>
+  <!-- fim profile-section -->
+
+  <!-- ══════════════════════════════════════════════════════════════
+       BARRA DE ABAS
+       ✏️ OPCIONAL: Pode deixar como está
+       ══════════════════════════════════════════════════════════════ -->
+  <div class="tab-bar">
+    <button class="tab-btn active" onclick="mudarAba('galeria', this)">Galeria</button>
+    <button class="tab-btn" onclick="mudarAba('sobre', this)">Sobre</button>
+    <button class="tab-btn" onclick="mudarAba('timeline', this)">Linha do Tempo</button>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════════════
+       ABA 1: GALERIA DE OBRAS
+       ✏️ ALTERE CADA OBRA: imagem, título, ano, técnica, descrição, local
+       ══════════════════════════════════════════════════════════════ -->
+  <div class="content-section visible" id="sec-galeria">
+
+    <div class="gallery-header">
+      <span class="gallery-title">Obras em Destaque</span>
+      <!-- ✏️ ALTERE: Número total de obras mostradas -->
+      <span class="gallery-count">5 obras</span>
+    </div>
+
+    <div class="gallery-grid">
+
+      <!-- ═══════════════════════════════════════════════════════
+           OBRA 1
+           ═══════════════════════════════════════════════════════ -->
+      <div class="obra-card">
+        <div class="obra-frame">
+          <!-- 
+          🎯 SUBSTITUIR ESTE BLOCO COMPLETO POR:
+          <img src="URL_DA_OBRA" alt="Título da Obra">
+          
+          Exemplo:
+          <img src="https://exemplo.com/obra1.jpg" alt="Título da Obra 1">
+          -->
+          <img src="a estudante Russa.webp" alt="obra 1" srcset="">
+        </div>
+        <div class="obra-body">
+          <!-- ✏️ ALTERE: Título da obra -->
+          <div class="obra-titulo">A Estudante Russa</div>
+          <!-- ✏️ ALTERE: Ano e local onde está exposta -->
+          <div class="obra-ano">1915· Coleção particular</div>
+          <!-- ✏️ ALTERE: Técnica (ex: Óleo sobre tela) e dimensões (ex: 100x80cm) -->
+          <div class="obra-tecnica">Óleo sobre tela · 50x40cm</div>
+          <!-- ✏️ ALTERE: Descrição da obra (contexto, significado, importância) -->
+          <div class="obra-desc">
+            Jovem com expressividade e cores fortes.
+          </div>
+          <div class="obra-actions">
+            <!-- Botão de curtir - NÃO ALTERE -->
+            <button class="obra-btn" onclick="curtirObra(this)" title="Apreciar obra">
+              <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+              <span>Apreciar</span>
+            </button>
+            <!-- ✏️ ALTERE: Nome do museu ou local de exposição -->
+            <span class="obra-local">Coleção particular</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══════════════════════════════════════════════════════
+           OBRA 2
+           ═══════════════════════════════════════════════════════ -->
+      <div class="obra-card">
+        <div class="obra-frame">
+          <!-- 🎯 SUBSTITUIR POR: <img src="URL_DA_OBRA_2" alt="Título da Obra 2"> -->
+        <img src="O Homem Amarelo.jpg" alt="Obra 2" srcset="">
+        </div>
+        <div class="obra-body">
+          <!-- ✏️ ALTERE todos os campos abaixo -->
+          <div class="obra-titulo">O Homem Amarelo</div>
+          <div class="obra-ano">1915· Museu de arte de São Paulo</div>
+          <div class="obra-tecnica">Óleo sobre tela·85x55cm</div>
+          <div class="obra-desc">
+            Figura humana  com cores vibrantes e formas distorcidas.
+          </div>
+          <div class="obra-actions">
+            <button class="obra-btn" onclick="curtirObra(this)" title="Apreciar obra">
+              <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+              <span>Apreciar</span>
+            </button>
+            <span class="obra-local">Museu de arte de São Paulo</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══════════════════════════════════════════════════════
+           OBRA 3
+           ═══════════════════════════════════════════════════════ -->
+      <div class="obra-card">
+        <div class="obra-frame">
+          <!-- 🎯 SUBSTITUIR POR: <img src="URL_DA_OBRA_3" alt="Título da Obra 3"> -->
+          <img src="a boba.jfif" alt="Obra 3" srcset="">
+        </div>
+        <div class="obra-body">
+          <!-- ✏️ ALTERE todos os campos abaixo -->
+          <div class="obra-titulo">A Boba</div>
+          <div class="obra-ano">1915· Museu de arte de São Paulo</div>
+          <div class="obra-tecnica">Óleo sobre tela· 60x45cm</div>
+          <div class="obra-desc">
+            Figura feminina com expressão introspectiva
+          </div>
+          <div class="obra-actions">
+            <button class="obra-btn" onclick="curtirObra(this)" title="Apreciar obra">
+              <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+              <span>Apreciar</span>
+            </button>
+            <span class="obra-local">Museu de arte de São Paulo</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══════════════════════════════════════════════════════
+           OBRA 4
+           ═══════════════════════════════════════════════════════ -->
+      <div class="obra-card">
+        <div class="obra-frame">
+          <!-- 🎯 SUBSTITUIR POR: <img src="URL_DA_OBRA_4" alt="Título da Obra 4"> -->
+          <img src="menina co laranja.jpg" alt="obra4" srcset="">
+        </div>
+        <div class="obra-body">
+          <!-- ✏️ ALTERE todos os campos abaixo -->
+          <div class="obra-titulo">A menina com laranja</div>
+          <div class="obra-ano">1917·Museu de arte de São Paulo</div>
+          <div class="obra-tecnica">Óleo sobre tela · 50x40cm</div>
+          <div class="obra-desc">
+            Expressão sobre vida cotidiana com modernismo.
+          </div>
+          <div class="obra-actions">
+            <button class="obra-btn" onclick="curtirObra(this)" title="Apreciar obra">
+              <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+              <span>Apreciar</span>
+            </button>
+            <span class="obra-local">Museu de arte de São Paulo</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══════════════════════════════════════════════════════
+           OBRA 5
+           ═══════════════════════════════════════════════════════ -->
+      <div class="obra-card">
+        <div class="obra-frame">
+          <!-- 🎯 SUBSTITUIR POR: <img src="URL_DA_OBRA_5" alt="Título da Obra 5"> -->
+          <img src="paisagem da figueira.jfif" alt="obra5" srcset="">
+        </div>
+        <div class="obra-body">
+          <!-- ✏️ ALTERE todos os campos abaixo -->
+          <div class="obra-titulo">Paisagem da Figueira</div>
+          <div class="obra-ano">1918·Museu de arte de São Paulo </div>
+          <div class="obra-tecnica">Óleo sobre tela · 60x40</div>
+          <div class="obra-desc">
+            Exploração do expresssionismo na paisagem.
+          </div>
+          <div class="obra-actions">
+            <button class="obra-btn" onclick="curtirObra(this)" title="Apreciar obra">
+              <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+              <span>Apreciar</span>
+            </button>
+            <span class="obra-local">Museu de arte de São Paulo</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- ADICIONAR MAIS OBRAS: 
+           📋 Copie todo o bloco <div class="obra-card">...</div> acima e cole aqui
+           para adicionar quantas obras quiser -->
+      <div class="obra-card add-card">
+        <div class="add-card-icon">＋</div>
+        <div class="add-card-text">Adicione mais obras copiando um card acima</div>
+      </div>
+
+    </div>
+    <!-- fim gallery-grid -->
+
+  </div>
+  <!-- fim sec-galeria -->
+
+  <!-- ══════════════════════════════════════════════════════════════
+       ABA 2: SOBRE O PINTOR
+       ✏️ ALTERE: Biografia completa, ficha técnica e contexto histórico
+       ══════════════════════════════════════════════════════════════ -->
+  <div class="content-section" id="sec-sobre">
+    <div class="sobre-section">
+
+      <!-- BIOGRAFIA COMPLETA -->
+      <div class="sobre-bloco"><
+        <div class="sobre-bloco-titulo">Anita Malfatti</div>
+        <div class="sobre-bloco-texto">
+          <!-- ✏️ ALTERE: Escreva 5-8 linhas contando a história completa do artista -->
+           Anita Malfatti foi uma importante pintora brasileira e uma das pioneiras do modernismo no Brasil. Nasceu em São Paulo, em 1889, e desde jovem demonstrou talento para a arte, mesmo enfrentando uma deficiência no braço direito.
+
+Estudou arte na Alemanha e nos Estados Unidos, onde conheceu movimentos modernos como o expressionismo. Ao voltar ao Brasil, realizou uma exposição em 1917 que causou muita polêmica por apresentar um estilo inovador e diferente da arte tradicional.
+
+Anita participou da Semana de Arte Moderna, tornando-se um dos principais nomes do modernismo brasileiro. Suas obras ajudaram a transformar a arte no país, incentivando mais liberdade criativa e novas formas de expressão.
+
+Hoje, é reconhecida como uma das artistas mais importantes da história da arte brasileira.
+
+          <br>Anita Malfatti estudou arte no Brasil e se transformou após viajar aos EUA e Europa, onde conheceu as vanguardas modernas.
+Sua exposição de 1917 chocou o público, mas marcou o início do modernismo no Brasil.
+Depois, aproximou-se de artistas modernistas e continuou desenvolvendo um estilo expressivo e inovador.
+Tornou-se referência do movimento e influenciou a arte brasileira até sua morte em 1964.
+<br>
+          Continue com mais detalhes sobre as diferentes fases de sua carreira, viagens que fez,
+          outros artistas com quem conviveu e eventos históricos que influenciaram sua obra.
+        </div>
+      </div>
+
+      <!-- FICHA DO ARTISTA -->
+      <div class="sobre-bloco">
+        <div class="sobre-bloco-titulo">Ficha do Artista</div>
+
+        <!-- ✏️ ALTERE cada linha abaixo com os dados reais do pintor -->
+        
+        <div class="sobre-linha">
+          <span class="sobre-chave">Nome completo</span>
+          <span class="sobre-valor">Anita Catarina Malfatti</span>
+        </div>
+        
+        <div class="sobre-linha">
+          <span class="sobre-chave">Nascimento</span>
+          <span class="sobre-valor">2 de dezembro de 1889· São Paulo, Brasil</span>
+        </div>
+        
+        <div class="sobre-linha">
+          <span class="sobre-chave">Falecimento</span>
+          <span class="sobre-valor">6 de novembro de 1964· São Paulo,Brasil</span>
+        </div>
+        
+        <div class="sobre-linha">
+          <span class="sobre-chave">Movimento</span>
+          <span class="sobre-valor">Modernismo</span>
+        </div>
+        
+        <div class="sobre-linha">
+          <span class="sobre-chave">Técnicas</span>
+          <span class="sobre-valor">Óleo sobre tela, aquarela e desenho</span>
+        </div>
+        
+        <div class="sobre-linha">
+          <span class="sobre-chave">Museus</span>
+          <span class="sobre-valor">Museu de Arte de São Paulo(MASP), acervos particulares</span>
+        </div>
+        
+        <div class="sobre-linha">
+          <span class="sobre-chave">Influências</span>
+          <span class="sobre-valor">Van Gogh e Vanguarda europeia</span>
+        </div>
+        
+        <div class="sobre-linha">
+          <span class="sobre-chave">Influenciou</span>
+          <span class="sobre-valor">Mario de Andrade, Oswald de Andrade, Tarsila do Amaral </span>
+        </div>
+      </div>
+
+      <!-- CONTEXTO HISTÓRICO -->
+      <div class="sobre-bloco">
+        <div class="sobre-bloco-titulo">Contexto Histórico</div>
+        <div class="sobre-bloco-texto">
+          <!-- ✏️ ALTERE: Explique o período histórico e sua relação com a arte do pintor -->
+        </div>
+        Anita Malfatti viveu no período da República Velha no Brasil, quando a arte ainda era dominada pelo academicismo europeu.
+      </div>
+
+    </div>
+  </div>
+  <!-- fim sec-sobre -->
+
+  <!-- ══════════════════════════════════════════════════════════════
+       ABA 3: LINHA DO TEMPO
+       ✏️ ALTERE: Cada evento com ano, título e descrição
+       ══════════════════════════════════════════════════════════════ -->
+  <div class="content-section" id="sec-timeline">
+    <div class="timeline-section">
+
+      <div class="timeline">
+
+        <!-- ═══════════════════════════════════════════════════════
+             EVENTO 1: NASCIMENTO
+             ═══════════════════════════════════════════════════════ -->
+        <div class="tl-item">
+          <div class="tl-dot"></div>
+          <!-- ✏️ ALTERE: Ano de nascimento -->
+          <div class="tl-ano">1889</div>
+          <!-- ✏️ ALTERE: Título do evento -->
+          <div class="tl-evento">Nascimento</div>
+          <!-- ✏️ ALTERE: Descrição detalhada do evento -->
+          <div class="tl-descricao">
+          </div>Anita Malfatti nasceu em 1889, em São Paulo, filha de pai italiano e mãe norte-americana.
+Cresceu em um ambiente multicultural e nasceu com uma deficiência no braço direito.
+Esse contexto marcou sua formação e seu interesse pela arte desde cedo.
+
+        </div>
+
+        <!-- ═══════════════════════════════════════════════════════
+             EVENTO 2: FORMAÇÃO ARTÍSTICA
+             ═══════════════════════════════════════════════════════ -->
+        <div class="tl-item">
+          <div class="tl-dot"></div>
+          <!-- ✏️ ALTERE: Ano do início da formação -->
+          <div class="tl-ano">1905</div>
+          <!-- ✏️ ALTERE: Título do evento -->
+          <div class="tl-evento">Início da Formação Artística</div>
+          <!-- ✏️ ALTERE: Descrição do evento -->
+          <div class="tl-descricao">
+        
+          </div>
+          Anita Malfatti começou sua formação artística ainda jovem, por volta de **1905–1910**, em São Paulo, em cursos de desenho e pintura.
+
+Em **1914**, viajou para os **Estados Unidos**, estudando na Academia de Arte de Nova York e entrando em contato com o Expressionismo e outras vanguardas.
+
+Entre **1914 e 1918**, continuou seus estudos e visitas a exposições em Nova York, aprofundando técnicas modernas.
+
+Posteriormente, na **década de 1930**, fez viagens à **Europa**, principalmente à Alemanha e Itália, para estudar pintura moderna e clássica.
+
+        </div>
+
+        <!-- ═══════════════════════════════════════════════════════
+             EVENTO 3: OBRA MAIS FAMOSA
+             ═══════════════════════════════════════════════════════ -->
+        <div class="tl-item">
+          <div class="tl-dot"></div>
+          <!-- ✏️ ALTERE: Ano da criação da obra -->
+          <div class="tl-ano">1915</div>
+          <!-- ✏️ ALTERE: Título do evento -->
+          <div class="tl-evento">Criação da Obra Mais Famosa</div>
+          <!-- ✏️ ALTERE: Descrição do evento -->
+          <div class="tl-descricao">
+          </div>
+          A obra mais famosa de Anita Malfatti, **“A Estudante Russa” (1915–1916)**, surgiu em um contexto de ruptura com o academicismo brasileiro, pouco antes da **Semana de Arte Moderna de 1922**.
+
+Ela foi inspirada pelas experiências de Anita nos **Estados Unidos**, onde conheceu o **Expressionismo e o Cubismo**, e também pela liberdade de cores e formas das vanguardas europeias. A pintura mostra cores intensas, formas distorcidas e traços emocionais, evidenciando seu olhar inovador.
+
+Quando exibida na **exposição individual de 1917 em São Paulo**, a obra **causou polêmica**: críticos conservadores a atacaram, chamando o estilo de “feio” ou “deformado”, enquanto artistas jovens e intelectuais perceberam sua modernidade e ousadia, marcando o início do modernismo brasileiro.
+
+
+        </div>
+
+        <!-- ═══════════════════════════════════════════════════════
+             EVENTO 4: RECONHECIMENTO
+             ═══════════════════════════════════════════════════════ -->
+        <div class="tl-item">
+          <div class="tl-dot"></div>
+          <!-- ✏️ ALTERE: Ano do reconhecimento -->
+          <div class="tl-ano">1917</div>
+          <!-- ✏️ ALTERE: Título do evento -->
+          <div class="tl-evento">Reconhecimento / Prêmio</div>
+          <!-- ✏️ ALTERE: Descrição do evento -->
+          <div class="tl-descricao">
+          </div>
+          Não, Anita Malfatti não recebeu prêmios formais durante sua carreira.
+
+O reconhecimento dela foi mais histórico e simbólico, vindo da influência que teve sobre o modernismo brasileiro e os artistas que vieram depois, como Tarsila do Amaral e Di Cavalcanti.
+O marco real de prestígio foi a exposição de 1917, que, apesar da polêmica, consolidou seu papel pioneiro na arte moderna do Brasil.
+        </div>
+
+        <!-- ═══════════════════════════════════════════════════════
+             EVENTO 5: FALECIMENTO
+             ═══════════════════════════════════════════════════════ -->
+        <div class="tl-item">
+          <div class="tl-dot"></div>
+          <!-- ✏️ ALTERE: Ano do falecimento -->
+          <div class="tl-ano">1964</div>
+          <!-- ✏️ ALTERE: Título do evento -->
+          <div class="tl-evento">Falecimento e Legado</div>
+          <!-- ✏️ ALTERE: Descrição do legado -->
+          <div class="tl-descricao">
+            
+          </div>
+          Anita Malfatti faleceu em 6 de novembro de 1964, em São Paulo, por causas naturais relacionadas à idade avançada.
+
+Seu legado é o de pioneira do modernismo brasileiro: ela foi uma das primeiras artistas a romper com o academicismo e introduzir no Brasil as vanguardas europeias, como o Expressionismo.
+        </div>
+
+        <!-- ADICIONAR MAIS EVENTOS:
+             📋 Copie todo o bloco <div class="tl-item">...</div> acima e cole aqui
+             para adicionar mais momentos importantes da vida do artista -->
+
+      </div>
+    </div>
+  </div>
+  <!-- fim sec-timeline -->
+
+  <!-- ══════════════════════════════════════════════════════════════
+       RODAPÉ
+       ✏️ OPCIONAL: Pode editar o texto do projeto
+       ══════════════════════════════════════════════════════════════ -->
+  <div class="canvas-footer">
+    <div class="footer-logo">CANVAS</div>
+    <div class="footer-line"></div>
+    <div class="footer-text">
+      <!-- ✏️ OPCIONAL: Edite as informações do projeto -->
+      <strong>Arte para todos · Literatura e Arte</strong><br>
+      Projeto da Turma · 2º Ano do Ensino Médio<br>
+      <span style="opacity: 0.5; font-size: 10px;">✏️ Edite o arquivo HTML para personalizar este perfil</span>
+    </div>
+  </div>
+
+</div><!-- fim canvas-app -->
+
+<!-- Link para o JavaScript - NÃO ALTERE -->
+<script src="script.js"></script>
+</body>
+</html>

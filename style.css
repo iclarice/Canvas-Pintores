@@ -1,0 +1,911 @@
+/* ══════════════════════════════════════════════════════════════
+   VARIÁVEIS DE CORES E TEMAS
+   ✏️ ALTERE AQUI: Para mudar cores do site inteiro
+   ══════════════════════════════════════════════════════════════ */
+
+/* TEMA PADRÃO (GALERIA) - Tons quentes e amadeirados */
+:root {
+  /* ✏️ Cores de fundo */
+  --bg:          #f4f0eb;  /* Fundo geral da página */
+  --bg2:         #ece7e0;  /* Fundo alternativo (desktop) */
+  --surface:     #ffffff;  /* Fundo dos cards e seções */
+  --surface2:    #f8f5f1;  /* Fundo alternativo de cards */
+  
+  /* ✏️ Cores de texto */
+  --text:        #1c1612;  /* Texto principal (escuro) */
+  --text-mid:    #5a4e43;  /* Texto médio */
+  --text-muted:  #9a8e82;  /* Texto desbotado/secundário */
+  
+  /* ✏️ Cores de destaque/botões */
+  --accent:      #b5460f;  /* Cor principal de destaque (laranja-terracota) */
+  --accent2:     #d4895a;  /* Cor de destaque secundária */
+  --accent-faint:#f6e5d8;  /* Cor de destaque bem clara */
+  
+  /* ✏️ Bordas e linhas */
+  --border:      #ddd5c8;  /* Borda padrão */
+  --border-soft: #e8e1d8;  /* Borda suave */
+  
+  /* ✏️ Cores especiais */
+  --gold:        #c9963a;  /* Dourado (para destaques especiais) */
+  --nav-bg:      #1c1612;  /* Fundo da barra de navegação */
+  --nav-text:    #f4f0eb;  /* Texto da navegação */
+  --tag-bg:      #f0e8de;  /* Fundo das tags/hashtags */
+  --tag-text:    #7a3b1a;  /* Texto das tags */
+  --frame:       #e8e0d4;  /* Cor da moldura das obras */
+  
+  /* ✏️ Sombras */
+  --shadow-sm:   0 2px 12px rgba(0,0,0,0.07);   /* Sombra pequena */
+  --shadow-md:   0 6px 28px rgba(0,0,0,0.11);   /* Sombra média */
+  
+  /* ✏️ Tamanhos (pode alterar se quiser capa/foto maiores ou menores) */
+  --cover-h:     200px;  /* Altura da capa */
+  --portrait-sz: 88px;   /* Tamanho da foto de perfil */
+}
+
+/* TEMA ATELIÊ - Tons escuros e quentes (estilo dark mode) */
+[data-theme="atelie"] {
+  --bg: #141210; --bg2: #0e0c0b; --surface: #1e1a17; --surface2: #252018;
+  --text: #f0e8de; --text-mid: #c0b0a0; --text-muted: #7a6e60;
+  --accent: #d4895a; --accent2: #e8a878; --accent-faint: #2a1e14;
+  --border: #2e2820; --border-soft: #262018; --gold: #e0b060;
+  --nav-bg: #0e0c0b; --nav-text: #f0e8de; --tag-bg: #2a1e14; --tag-text: #d4895a;
+  --frame: #2a2218; --shadow-sm: 0 2px 12px rgba(0,0,0,0.3); --shadow-md: 0 6px 28px rgba(0,0,0,0.5);
+}
+
+/* TEMA MUSEU - Tons azulados e elegantes */
+[data-theme="museu"] {
+  --bg: #f0ede8; --bg2: #e8e3da; --surface: #fafaf8; --surface2: #f4f2ee;
+  --text: #1a1814; --text-mid: #4a4438; --text-muted: #908070;
+  --accent: #2c5f8a; --accent2: #5a8aad; --accent-faint: #dde8f0;
+  --border: #d8d0c4; --border-soft: #e4ddd4; --gold: #b08030;
+  --nav-bg: #1a2030; --nav-text: #f0ede8; --tag-bg: #dde8f0; --tag-text: #1e4870;
+  --frame: #e0d8cc; --shadow-sm: 0 2px 12px rgba(0,0,0,0.06); --shadow-md: 0 6px 28px rgba(0,0,0,0.10);
+}
+
+/* TEMA IMPRESSIONISTA - Tons roxos e neutros */
+[data-theme="impressionista"] {
+  --bg: #f0f0ee; --bg2: #e8e8e4; --surface: #ffffff; --surface2: #f6f6f4;
+  --text: #18181a; --text-mid: #484850; --text-muted: #888890;
+  --accent: #6040a0; --accent2: #9070c8; --accent-faint: #ece4f8;
+  --border: #d8d8d4; --border-soft: #e8e8e4; --gold: #a07830;
+  --nav-bg: #2a2040; --nav-text: #f0f0ee; --tag-bg: #ece4f8; --tag-text: #4a2880;
+  --frame: #e0dce8; --shadow-sm: 0 2px 12px rgba(0,0,0,0.06); --shadow-md: 0 6px 28px rgba(0,0,0,0.10);
+}
+
+/* ══════════════════════════════════════════════════════════════
+   ESTILOS BASE
+   ⚠️ NÃO ALTERE: Estilos fundamentais do site
+   ══════════════════════════════════════════════════════════════ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+
+body {
+  font-family: 'Jost', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  transition: background 0.5s, color 0.5s;
+  overflow-x: hidden;
+}
+
+/* ══════════════════════════════════════════════════════════════
+   BARRA DE NAVEGAÇÃO (TOPO)
+   ✏️ ALTERE: Cores via variáveis acima, não aqui
+   ══════════════════════════════════════════════════════════════ */
+.navbar {
+  background: var(--nav-bg);
+  color: var(--nav-text);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+  height: 52px;
+  position: sticky;
+  top: 0;
+  z-index: 200;
+  gap: 12px;
+}
+
+.nav-logo {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 20px;
+  font-weight: 300;
+  letter-spacing: 4px;
+  color: var(--nav-text);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.nav-logo-dot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--gold);
+  flex-shrink: 0;
+}
+
+.nav-themes {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  padding-right: 4px;
+}
+.nav-themes::-webkit-scrollbar { display: none; }
+
+.theme-label {
+  font-size: 10px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  opacity: 0.4;
+  color: var(--nav-text);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+/* Botões de tema */
+.tbtn {
+  background: transparent;
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 3px;
+  color: rgba(255,255,255,0.6);
+  font-family: 'Jost', sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.8px;
+  padding: 5px 10px;
+  cursor: pointer;
+  transition: all 0.2s;
+  white-space: nowrap;
+  flex-shrink: 0;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+
+.tbtn:hover { background: rgba(255,255,255,0.08); color: #fff; }
+.tbtn:active { transform: scale(0.96); }
+.tbtn.active { background: var(--gold); border-color: var(--gold); color: #1a1410; }
+
+/* ══════════════════════════════════════════════════════════════
+   CONTAINER PRINCIPAL
+   ⚠️ NÃO ALTERE: Define largura máxima e centralização
+   ══════════════════════════════════════════════════════════════ */
+.canvas-app {
+  max-width: 680px;
+  margin: 0 auto;
+  padding-bottom: 60px;
+}
+
+/* ══════════════════════════════════════════════════════════════
+   IMAGEM DE CAPA
+   ✏️ ALTERE: Altura via --cover-h nas variáveis
+   ══════════════════════════════════════════════════════════════ */
+.profile-cover {
+  position: relative;
+  height: var(--cover-h);
+  background: var(--frame);
+  overflow: hidden;
+  border-bottom: 3px solid var(--gold);
+  transition: background 0.5s;
+  z-index: 0;
+}
+
+/* Imagem real da capa (quando você substituir o placeholder) */
+.profile-cover-art {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Placeholder da capa (aparece antes de você colocar a imagem) */
+.profile-cover-placeholder {
+  width: 100%; height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.cover-placeholder-icon { font-size: 36px; opacity: 0.18; }
+.cover-placeholder-text {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 13px;
+  font-style: italic;
+  color: var(--text-muted);
+  opacity: 0.5;
+  letter-spacing: 1px;
+}
+.cover-placeholder-hint {
+  font-size: 10px;
+  color: var(--text-muted);
+  opacity: 0.35;
+  letter-spacing: 0.5px;
+  text-align: center;
+  padding: 0 24px;
+}
+
+/* Gradiente sobre a capa */
+.cover-overlay {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 60px;
+  background: linear-gradient(transparent, rgba(0,0,0,0.18));
+  pointer-events: none;
+}
+
+/* ══════════════════════════════════════════════════════════════
+   SEÇÃO DO PERFIL
+   ✏️ ALTERE: Tamanho da foto via --portrait-sz nas variáveis
+   ══════════════════════════════════════════════════════════════ */
+.profile-section {
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  padding: 0 16px 18px;
+  transition: background 0.5s, border-color 0.5s;
+}
+
+.profile-row {
+  display: flex;
+  align-items: flex-end;
+  gap: 12px;
+  margin-top: -40px;
+  margin-bottom: 12px;
+}
+
+/* Foto de perfil */
+.profile-portrait {
+  width: var(--portrait-sz);
+  height: var(--portrait-sz);
+  border-radius: 6px;
+  border: 3px solid var(--surface);
+  background: var(--frame);
+  overflow: hidden;
+  flex-shrink: 0;
+  box-shadow: var(--shadow-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 34px;
+  font-weight: 300;
+  color: var(--text-muted);
+  transition: background 0.5s, border-color 0.5s;
+  position: relative;
+  z-index: 1;
+}
+.profile-portrait img { width: 100%; height: 100%; object-fit: cover; }
+
+.profile-actions {
+  margin-left: auto;
+  padding-bottom: 6px;
+}
+
+/* Botão seguir */
+.btn-seguir {
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  font-family: 'Jost', sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  padding: 9px 20px;
+  cursor: pointer;
+  transition: all 0.2s;
+  white-space: nowrap;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+  min-height: 40px;
+}
+.btn-seguir:hover { opacity: 0.85; }
+.btn-seguir:active { transform: scale(0.97); }
+
+/* Nome do perfil */
+.profile-name-block { margin-bottom: 8px; }
+
+.profile-full-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(20px, 5vw, 26px);
+  font-weight: 600;
+  color: var(--text);
+  line-height: 1.15;
+  margin-bottom: 3px;
+}
+
+.profile-handle {
+  font-size: 12px;
+  color: var(--text-muted);
+  letter-spacing: 0.5px;
+}
+
+/* Localização e movimento */
+.profile-meta-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 12px;
+  align-items: center;
+}
+
+.profile-meta-item {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 12px;
+  color: var(--text-muted);
+}
+.meta-icon { font-size: 13px; }
+
+.movement-badge {
+  background: var(--gold);
+  color: #1a1410;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  padding: 3px 10px;
+  border-radius: 3px;
+}
+
+/* Estatísticas (obras, décadas, admiradores) */
+.profile-stats-row {
+  display: flex;
+  gap: 0;
+  margin-bottom: 14px;
+  border-top: 1px solid var(--border-soft);
+  border-bottom: 1px solid var(--border-soft);
+  padding: 10px 0;
+  transition: border-color 0.5s;
+}
+
+.pstat {
+  text-align: center;
+  flex: 1;
+  position: relative;
+}
+.pstat + .pstat::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 15%; bottom: 15%;
+  width: 1px;
+  background: var(--border-soft);
+}
+
+.pstat-num {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 22px;
+  font-weight: 600;
+  color: var(--text);
+  display: block;
+}
+.pstat-label {
+  font-size: 10px;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  display: block;
+  margin-top: 2px;
+}
+
+/* Biografia e citação */
+.profile-bio-text {
+  font-size: 13px;
+  line-height: 1.65;
+  color: var(--text-mid);
+  margin-bottom: 10px;
+}
+
+.profile-bio-quote {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 14px;
+  font-style: italic;
+  font-weight: 300;
+  color: var(--text-muted);
+  border-left: 2px solid var(--gold);
+  padding-left: 12px;
+  margin: 12px 0;
+  line-height: 1.6;
+}
+
+/* Tags/hashtags */
+.profile-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 12px;
+}
+
+.ptag {
+  background: var(--tag-bg);
+  color: var(--tag-text);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  padding: 4px 9px;
+  border-radius: 3px;
+  transition: background 0.3s, color 0.3s;
+}
+
+/* ══════════════════════════════════════════════════════════════
+   BARRA DE ABAS
+   ⚠️ NÃO ALTERE: Funcionalidade de navegação
+   ══════════════════════════════════════════════════════════════ */
+.tab-bar {
+  display: flex;
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 52px;
+  background: var(--surface);
+  z-index: 100;
+  transition: background 0.5s, border-color 0.5s;
+}
+
+.tab-btn {
+  flex: 1;
+  background: none;
+  border: none;
+  border-bottom: 2px solid transparent;
+  color: var(--text-muted);
+  font-family: 'Jost', sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  padding: 14px 8px;
+  cursor: pointer;
+  transition: all 0.2s;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+  min-height: 48px;
+}
+
+.tab-btn:hover { color: var(--text-mid); }
+.tab-btn.active {
+  color: var(--accent);
+  border-bottom-color: var(--accent);
+}
+
+/* Controle de visibilidade das abas */
+.content-section {
+  display: none;
+  animation: aparecer 0.4s ease;
+}
+.content-section.visible { display: block; }
+
+@keyframes aparecer {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ══════════════════════════════════════════════════════════════
+   GALERIA DE OBRAS
+   ✏️ ALTERE: Número de colunas no grid se quiser
+   ══════════════════════════════════════════════════════════════ */
+.gallery-header {
+  padding: 12px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--surface2);
+  border-bottom: 1px solid var(--border-soft);
+  transition: background 0.5s, border-color 0.5s;
+}
+
+.gallery-title {
+  font-size: 11px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  font-weight: 600;
+}
+
+.gallery-count {
+  font-size: 10px;
+  color: var(--text-muted);
+  letter-spacing: 0.5px;
+}
+
+/* Grid de obras - ✏️ Mude grid-template-columns para mudar número de colunas */
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* 280px = largura mínima de cada obra */
+  gap: 10px;
+  padding: 8px 16px 16px;
+}
+
+/* Card de cada obra */
+.obra-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  transition: all 0.3s;
+}
+.obra-card:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-3px);
+}
+
+/* Moldura da obra */
+.obra-frame {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4/3;
+  background: var(--frame);
+  overflow: hidden;
+  transition: background 0.5s;
+}
+
+/* Imagem da obra (quando você substituir o placeholder) */
+.obra-frame img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.4s ease;
+}
+
+.obra-card:hover .obra-frame img { transform: scale(1.04); }
+
+/* Placeholder da obra (antes de colocar a imagem) */
+.obra-frame-placeholder {
+  width: 100%; height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+.frame-placeholder-icon { font-size: 24px; opacity: 0.2; }
+.frame-placeholder-text {
+  font-size: 9px;
+  color: var(--text-muted);
+  opacity: 0.4;
+  text-align: center;
+  padding: 0 8px;
+  letter-spacing: 0.3px;
+  line-height: 1.5;
+}
+
+/* Linha dourada na base da moldura */
+.obra-frame::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  opacity: 0.5;
+}
+
+/* Corpo do card (texto) */
+.obra-body { padding: 10px 12px 12px; }
+
+.obra-titulo {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text);
+  line-height: 1.3;
+  margin-bottom: 3px;
+}
+
+.obra-ano {
+  font-size: 11px;
+  color: var(--text-muted);
+  margin-bottom: 5px;
+  letter-spacing: 0.4px;
+}
+
+.obra-tecnica {
+  font-size: 11px;
+  color: var(--text-mid);
+  font-style: italic;
+  margin-bottom: 7px;
+  font-family: 'Cormorant Garamond', serif;
+}
+
+.obra-desc {
+  font-size: 12px;
+  color: var(--text-muted);
+  line-height: 1.55;
+  margin-bottom: 8px;
+}
+
+/* Ações da obra (botão curtir e local) */
+.obra-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding-top: 8px;
+  border-top: 1px solid var(--border-soft);
+}
+
+/* Botão de apreciar */
+.obra-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 12px;
+  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-family: 'Jost', sans-serif;
+  padding: 4px 0;
+  transition: color 0.2s;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+  min-height: 36px;
+}
+
+.obra-btn:hover { color: var(--accent); }
+.obra-btn.curtido { color: var(--accent); }
+
+.obra-btn svg {
+  width: 15px; height: 15px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  flex-shrink: 0;
+  transition: transform 0.2s;
+}
+
+.obra-btn.curtido svg { fill: var(--accent); stroke: var(--accent); transform: scale(1.15); }
+
+.obra-local {
+  margin-left: auto;
+  font-size: 10px;
+  color: var(--text-muted);
+  letter-spacing: 0.3px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 80px;
+}
+
+/* Card para adicionar mais obras */
+.obra-card.add-card {
+  border: 2px dashed var(--border);
+  box-shadow: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 140px;
+  background: transparent;
+  flex-direction: column;
+  gap: 8px;
+}
+.add-card-icon { font-size: 24px; opacity: 0.2; }
+.add-card-text {
+  font-size: 10px;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  opacity: 0.5;
+  text-align: center;
+  padding: 0 12px;
+}
+
+/* ══════════════════════════════════════════════════════════════
+   ABA SOBRE
+   ⚠️ NÃO ALTERE: Estrutura da ficha e biografia
+   ══════════════════════════════════════════════════════════════ */
+.sobre-section { padding: 16px; }
+
+.sobre-bloco {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 16px 18px;
+  margin-bottom: 12px;
+  box-shadow: var(--shadow-sm);
+  transition: background 0.5s, border-color 0.5s;
+}
+
+.sobre-bloco-titulo {
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 10px;
+  font-weight: 600;
+}
+
+.sobre-bloco-texto {
+  font-size: 13.5px;
+  line-height: 1.75;
+  color: var(--text-mid);
+}
+
+/* Linhas da ficha do artista */
+.sobre-linha {
+  display: flex;
+  align-items: flex-start;
+  padding: 9px 0;
+  border-bottom: 1px solid var(--border-soft);
+  gap: 12px;
+  transition: border-color 0.5s;
+}
+.sobre-linha:last-child { border-bottom: none; }
+
+.sobre-chave {
+  font-size: 11px;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  min-width: 90px;
+  flex-shrink: 0;
+  padding-top: 1px;
+}
+
+.sobre-valor {
+  font-size: 13px;
+  color: var(--text);
+  flex: 1;
+  line-height: 1.5;
+}
+
+/* ══════════════════════════════════════════════════════════════
+   LINHA DO TEMPO
+   ⚠️ NÃO ALTERE: Estrutura visual da timeline
+   ══════════════════════════════════════════════════════════════ */
+.timeline-section { padding: 16px; }
+
+.timeline {
+  position: relative;
+  padding-left: 28px;
+}
+
+/* Linha vertical da timeline */
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 7px; top: 8px; bottom: 8px;
+  width: 1px;
+  background: linear-gradient(180deg, var(--gold), var(--border), transparent);
+}
+
+.tl-item {
+  position: relative;
+  margin-bottom: 24px;
+  animation: aparecer 0.5s ease both;
+}
+
+/* Animação escalonada dos eventos */
+.tl-item:nth-child(1) { animation-delay: 0.05s; }
+.tl-item:nth-child(2) { animation-delay: 0.10s; }
+.tl-item:nth-child(3) { animation-delay: 0.15s; }
+.tl-item:nth-child(4) { animation-delay: 0.20s; }
+.tl-item:nth-child(5) { animation-delay: 0.25s; }
+
+/* Marcador de cada evento */
+.tl-dot {
+  position: absolute;
+  left: -25px; top: 5px;
+  width: 10px; height: 10px;
+  border-radius: 50%;
+  background: var(--surface);
+  border: 2px solid var(--gold);
+  transition: background 0.5s;
+}
+
+.tl-ano {
+  font-size: 10px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--gold);
+  font-weight: 600;
+  margin-bottom: 3px;
+}
+
+.tl-evento {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 4px;
+  line-height: 1.25;
+}
+
+.tl-descricao {
+  font-size: 13px;
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+
+/* ══════════════════════════════════════════════════════════════
+   RODAPÉ
+   ✏️ OPCIONAL: Pode editar o texto no HTML
+   ══════════════════════════════════════════════════════════════ */
+.canvas-footer {
+  text-align: center;
+  padding: 28px 20px 48px;
+  border-top: 1px solid var(--border);
+  transition: border-color 0.5s;
+}
+
+.footer-logo {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 20px;
+  font-weight: 300;
+  letter-spacing: 5px;
+  color: var(--text-muted);
+  margin-bottom: 6px;
+}
+
+.footer-line {
+  width: 40px; height: 1px;
+  background: var(--gold);
+  margin: 8px auto;
+  opacity: 0.5;
+}
+
+.footer-text {
+  font-size: 11px;
+  color: var(--text-muted);
+  line-height: 1.8;
+  letter-spacing: 0.3px;
+}
+.footer-text strong { color: var(--accent); font-weight: 600; }
+
+/* ══════════════════════════════════════════════════════════════
+   RESPONSIVIDADE (MOBILE E TABLET)
+   ⚠️ NÃO ALTERE: Ajustes automáticos para diferentes telas
+   ══════════════════════════════════════════════════════════════ */
+
+/* Mobile pequeno (até 360px) */
+@media (max-width: 360px) {
+  :root { --cover-h: 160px; --portrait-sz: 74px; }
+  .navbar { padding: 0 12px; gap: 8px; }
+  .theme-label { display: none; }
+  .tbtn { padding: 4px 7px; font-size: 10px; }
+  .nav-logo { font-size: 17px; letter-spacing: 3px; }
+  .gallery-grid { grid-template-columns: 1fr; gap: 10px; padding: 4px 12px 12px; }
+  .profile-section { padding: 0 12px 14px; }
+  .profile-row { margin-top: -34px; }
+  .obra-titulo { font-size: 14px; }
+  .sobre-chave { min-width: 75px; font-size: 10px; }
+}
+
+/* Mobile médio (até 480px) */
+@media (max-width: 480px) {
+  :root { --cover-h: 175px; --portrait-sz: 80px; }
+  .theme-label { display: none; }
+  .tbtn { padding: 4px 9px; font-size: 10px; }
+  .gallery-grid { gap: 8px; padding: 4px 12px 12px; }
+  .profile-section { padding: 0 14px 16px; }
+  .sobre-section { padding: 12px; }
+  .timeline-section { padding: 12px; }
+  .sobre-bloco { padding: 14px 16px; }
+  /* Empilha a ficha verticalmente em telas pequenas */
+  .sobre-linha { flex-direction: column; gap: 4px; }
+  .sobre-valor { text-align: left; }
+}
+
+/* Tablet (481px a 680px) */
+@media (min-width: 481px) and (max-width: 680px) {
+  .canvas-app { padding: 0 8px 60px; }
+}
+
+/* Desktop (acima de 680px) */
+@media (min-width: 681px) {
+  .canvas-app { padding: 0 0 60px; box-shadow: 0 0 0 1px var(--border); }
+  body { background: var(--bg2); }
+}
+
+/* Ajuste de área tocável para mobile (mínimo 44px) */
+@media (hover: none) {
+  .obra-btn { min-height: 44px; padding: 4px 0; }
+  .tab-btn { min-height: 48px; }
+  .tbtn { min-height: 36px; }
+  .btn-seguir { min-height: 44px; }
+}
